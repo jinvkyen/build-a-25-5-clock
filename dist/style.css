@@ -1,0 +1,242 @@
+/* Base styles and imports */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+
+:root {
+  --tomato-red: #e94a3f;
+  --tomato-dark: #c13c33;
+  --leaf-green: #97bf60;
+  --background: #ffc145;
+  --text-color: #333;
+  --timer-bg: #fff;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-color);
+}
+
+#container {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  padding-top: 80px;
+}
+
+/* Pomodoro title */
+#container::before {
+  content: "pomodoro timer";
+  text-shadow: -4px 4px 2px rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--tomato-red);
+  transform: rotate(-5deg);
+}
+
+/* Length controls section */
+#length-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+#length-controls div {
+  background-color: var(--timer-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 45%;
+}
+
+#length-controls h2 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--tomato-red);
+}
+
+#break-length,
+#session-length {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 1rem;
+}
+
+/* Button styling */
+button {
+  background-color: var(--tomato-red);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: var(--tomato-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer styling - tomato shape */
+.timer {
+  position: relative;
+  background-color: var(--tomato-red);
+  border-radius: 50%;
+  width: 450px;
+  height: 350px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  animation: wobble 2s ease-in-out infinite;
+}
+
+/* Tomato leaf */
+.timer:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  background-color: var(--leaf-green);
+  width: 300px;
+  height: 50px;
+  aspect-ratio: 1;
+  clip-path: polygon(
+    100% 50%,
+    77.72% 61.48%,
+    85.36% 85.36%,
+    61.48% 77.72%,
+    50% 100%,
+    38.52% 77.72%,
+    14.64% 85.36%,
+    22.28% 61.48%,
+    0% 50%,
+    22.28% 38.52%,
+    14.64% 14.64%,
+    38.52% 22.28%,
+    50% 0%,
+    61.48% 22.28%,
+    85.36% 14.64%,
+    77.72% 38.52%
+  );
+  transform: rotate(0deg);
+}
+
+/* Inner clock face */
+#time-left {
+  background-color: var(--timer-bg);
+  width: 280px;
+  height: 190px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.75rem;
+  font-weight: 900;
+  position: relative;
+  top: 20px;
+}
+
+#time-left::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px dotted #ccc;
+}
+
+#timer-label {
+  color: white;
+  font-size: 16px;
+  padding: 1em 3.3em;
+  transform: perspective(200px) rotateX(15deg);
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 252, 0, 1) 0%,
+    rgba(248, 81, 3, 1) 0%,
+    rgba(243, 131, 4, 1) 51%,
+    rgba(248, 83, 3, 1) 100%
+  );
+  box-shadow: rgba(63, 94, 251, 0.2) 0px 40px 29px 0px;
+  will-change: transform;
+  transition: all 0.3s;
+  border-bottom: 2px solid rgba(243, 131, 4, 1);
+}
+
+/* Control buttons at the bottom of timer */
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+#start_stop,
+#reset {
+  width: 70px;
+  height: 70px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--tomato-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+#start_stop:hover,
+#reset:hover {
+  background-color: #f0f0f0;
+}
+
+/* Animation for the tomato wobble effect */
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Shadow beneath tomato */
+.timer::after {
+  content: "";
+  position: fixed;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  z-index: -1;
+}
